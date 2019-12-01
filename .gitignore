@@ -1,0 +1,8 @@
+.idea/
+.vs/
+
+[Oo]bj
+[Bb]in
+[Pp]roperties
+
+*.user
