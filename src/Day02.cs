@@ -10,23 +10,51 @@ namespace AdventOfCode2019
         public void Part1()
         {
             var input = Helper.ReadEmbeddedFile(GetType().Assembly, $"Input.{GetType().Name}.txt");
-            Console.WriteLine($"{GetType().Name} Part 1: {SolvePart1(input)} (Expected: 3790689 )");
+            Console.WriteLine($"{GetType().Name} Part 1: {SolvePart1(input)} (Expected: 3790689)");
         }
 
         public void Part2()
         {
             var input = Helper.ReadEmbeddedFile(GetType().Assembly, $"Input.{GetType().Name}.txt");
-            Console.WriteLine($"{GetType().Name} Part 2: {SolvePart2(input)} (Expected: )");
+            Console.WriteLine($"{GetType().Name} Part 2: {SolvePart2(input)} (Expected: 6533)");
         }
 
         private static int SolvePart1(string input)
         {
-            var codes = input.Split(',').Select(i => int.Parse(i)).ToList();
+            var codes = input.Split(',').Select(int.Parse).ToList();
 
-            codes[1] = 12;
-            codes[2] = 2;
+            RunProgramm(codes, 12, 2);
 
-            for (int i = 0; i < codes.Count; i = i + 4)
+            return codes[0];
+        }
+
+        private static double SolvePart2(string input)
+        {
+            // 19690720
+
+            var source = input.Split(',').Select(int.Parse).ToList();
+
+            for (var noun = 0; noun < 99; noun++)
+            for (var vern = 0; vern < 99; vern++)
+            {
+                var codes = source.ToList();
+                RunProgramm(codes, noun, vern);
+
+                if (codes[0] == 19690720)
+                {
+                    return 100 * noun + vern;
+                }
+            }
+
+            return -1;
+        }
+
+        private static void RunProgramm(IList<int> codes, int noun, int vern)
+        {
+            codes[1] = noun;
+            codes[2] = vern;
+
+            for (var i = 0; i < codes.Count; i += 4)
             {
                 var code = codes[i];
 
@@ -57,14 +85,6 @@ namespace AdventOfCode2019
                     throw new Exception("Wrong state");
                 }
             }
-
-            return codes[0];
-        }
-
-        private static double SolvePart2(string input)
-        {
-
-            return 0.0;
         }
     }
 }
