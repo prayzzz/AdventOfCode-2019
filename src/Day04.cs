@@ -54,7 +54,6 @@ namespace AdventOfCode2019
                 if (TwoAdjacentDigits2(str) && NeverDecrease(str))
                 {
                     possibleValues.Add(i);
-                    Console.WriteLine(i);
                 }
             }
 
