@@ -9,9 +9,5 @@
     <ItemGroup>
         <EmbeddedResource Include="Input\*.*" />
     </ItemGroup>
-
-    <ItemGroup>
-      <Content Include="Input\Day03.txt" />
-    </ItemGroup>
     
 </Project>
