@@ -35,14 +35,14 @@ namespace AdventOfCode2019
 
             var stringBuilder = new StringBuilder();
             for (var i = 0; i < obj.GetUpperBound(0) + 1; i++)
-                for (var j = 0; j < obj.GetUpperBound(1) + 1; j++)
+            for (var j = 0; j < obj.GetUpperBound(1) + 1; j++)
+            {
+                stringBuilder.Append(obj[i, j]);
+                if (isSeperator)
                 {
-                    stringBuilder.Append(obj[i, j]);
-                    if (isSeperator)
-                    {
-                        stringBuilder.Append(seperator);
-                    }
+                    stringBuilder.Append(seperator);
                 }
+            }
 
             return stringBuilder.ToString();
         }
@@ -56,6 +56,18 @@ namespace AdventOfCode2019
             else
             {
                 dict.Add(key, value);
+            }
+        }
+
+        public static void AddToList<TKey, TValue>(this Dictionary<TKey, List<TValue>> dict, TKey key, TValue value)
+        {
+            if (dict.ContainsKey(key))
+            {
+                dict[key].Add(value);
+            }
+            else
+            {
+                dict.Add(key, new List<TValue> {value});
             }
         }
     }
