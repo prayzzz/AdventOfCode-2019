@@ -22,36 +22,34 @@ namespace AdventOfCode2019
         {
             var codes = input.Split(',').Select(int.Parse).ToList();
 
-            RunProgramm(codes, 12, 2);
+            RunProgram(codes, 12, 2);
 
             return codes[0];
         }
 
         private static double SolvePart2(string input)
         {
-            // 19690720
-
             var source = input.Split(',').Select(int.Parse).ToList();
 
             for (var noun = 0; noun < 99; noun++)
-            for (var vern = 0; vern < 99; vern++)
+            for (var verb = 0; verb < 99; verb++)
             {
                 var codes = source.ToList();
-                RunProgramm(codes, noun, vern);
+                RunProgram(codes, noun, verb);
 
                 if (codes[0] == 19690720)
                 {
-                    return 100 * noun + vern;
+                    return 100 * noun + verb;
                 }
             }
 
             return -1;
         }
 
-        private static void RunProgramm(IList<int> codes, int noun, int vern)
+        private static void RunProgram(IList<int> codes, int noun, int verb)
         {
             codes[1] = noun;
-            codes[2] = vern;
+            codes[2] = verb;
 
             for (var i = 0; i < codes.Count; i += 4)
             {
